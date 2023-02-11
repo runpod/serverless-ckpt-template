@@ -17,6 +17,7 @@ RUN apt-get update --yes && \
     apt-get clean && rm -rf /var/lib/apt/lists/* && \
     echo "en_US.UTF-8 UTF-8" > /etc/locale.gen
 
+RUN apt-get update && apt-get install -y --no-install-recommends
 RUN apt-get install software-properties-common -y
 RUN add-apt-repository ppa:deadsnakes/ppa
 RUN apt-get install python3.10.9 -y
