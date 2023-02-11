@@ -21,11 +21,13 @@ RUN apt-get update && apt-get install -y --no-install-recommends
 RUN apt-get install software-properties-common -y
 RUN add-apt-repository ppa:deadsnakes/ppa
 RUN apt-get install python3.10 -y
+RUN apt-get install python3-pip -y
+
 
 COPY requirements.txt /opt/ckpt/requirements.txt
 WORKDIR /opt/ckpt
-RUN pip install -r requirements.txt
+RUN pip3 install -r requirements.txt
 
 COPY . /opt/ckpt
 
-CMD [ "python", "-u", "/opt/ckpt/runpod_infer.py"]
+CMD [ "python3", "-u", "/opt/ckpt/runpod_infer.py"]
