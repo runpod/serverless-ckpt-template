@@ -1,4 +1,13 @@
-# serverless-ckpt-template
-🖼️ | Quickly deploy a custom RunPod Endpoint API using your own model ckpt.
+# Serverless | Model Checkpoint Template
 
-Use this template to quickly deploy a custom RunPod Endpoint API using your own model ckpt. The setup scripts will help to download the model as well as setting up the Dockerfile.
+End-to-End template for deploying your own Stable Diffusion Model to RunPod Serverless.
+
+The setup scripts will help to download the model as well as setting up the Dockerfile.
+
+## Setup
+
+```BASH
+git clone https://github.com/runpod/serverless-ckpt-template.git
+
+docker build -t serverless-ckpt-template .
+```
