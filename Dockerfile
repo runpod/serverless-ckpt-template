@@ -1,4 +1,4 @@
-ARG BASE_IMAGE=nvidia/cuda:11.6.0-cudnn8-devel-ubuntu20.04
+ARG BASE_IMAGE=nvidia/cuda:11.6.2-cudnn8-devel-ubuntu20.04
 FROM ${BASE_IMAGE} as dev-base
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
@@ -30,5 +30,7 @@ RUN pip3 install -r requirements.txt
 RUN pip install https://github.com/runpod/runpod-python/archive/main.zip
 
 COPY . /opt/ckpt
+
+RUN python3 download_weights.py
 
 CMD [ "python3", "-u", "/opt/ckpt/runpod_infer.py"]
