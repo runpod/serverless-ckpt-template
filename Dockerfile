@@ -20,7 +20,7 @@ RUN apt-get update --yes && \
 RUN apt-get update && apt-get install -y --no-install-recommends
 RUN apt-get install software-properties-common -y
 RUN add-apt-repository ppa:deadsnakes/ppa
-RUN apt-get install python3.10.9 -y
+RUN apt-get install python3.10 -y
 
 COPY requirements.txt /opt/ckpt/requirements.txt
 WORKDIR /opt/ckpt
