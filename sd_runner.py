@@ -2,7 +2,7 @@ import os
 from typing import List
 
 import torch
-from cog import BasePredictor, Input, Path
+
 from diffusers import (
     StableDiffusionPipeline,
     PNDMScheduler,
@@ -22,7 +22,7 @@ MODEL_CACHE = "diffusers-cache"
 SAFETY_MODEL_ID = "CompVis/stable-diffusion-safety-checker"
 
 
-class Predictor(BasePredictor):
+class Predictor():
     def setup(self):
         """Load the model into memory to make running multiple predictions efficient"""
         print("Loading pipeline...")
@@ -64,7 +64,7 @@ class Predictor(BasePredictor):
 
             output_path = f"/tmp/out-{i}.png"
             sample.save(output_path)
-            output_paths.append(Path(output_path))
+            output_paths.append(output_path)
 
         return output_paths
 
