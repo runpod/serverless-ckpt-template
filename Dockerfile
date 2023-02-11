@@ -16,11 +16,15 @@ RUN apt-get update --yes && \
     openssh-server &&\
     apt-get clean && rm -rf /var/lib/apt/lists/* && \
     echo "en_US.UTF-8 UTF-8" > /etc/locale.gen
-RUN apt-get -y install python3
-RUN apt-get -y install python3-pip
+
+RUN apt install software-properties-common -y
+RUN add-apt-repository ppa:deadsnakes/ppa
+RUN apt install python3.10.9 -y
 
 COPY requirements.txt /opt/ckpt/requirements.txt
 WORKDIR /opt/ckpt
 RUN pip install -r requirements.txt
 
 COPY . /opt/ckpt
+
+CMD [ "python", "-u", "/opt/ckpt/runpod_infer.py"]
