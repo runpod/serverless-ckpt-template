@@ -27,7 +27,7 @@ RUN apt-get install python3-pip -y
 COPY requirements.txt /opt/ckpt/requirements.txt
 WORKDIR /opt/ckpt
 RUN pip3 install -r requirements.txt
-RUN pip3 install triton
+RUN pip3 install triton==2.0.0.dev20221120
 RUN pip3 install https://github.com/runpod/runpod-python/archive/main.zip
 
 COPY . /opt/ckpt
