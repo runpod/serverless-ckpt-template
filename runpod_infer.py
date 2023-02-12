@@ -69,13 +69,14 @@ INPUT_SCHEMA = {
 }
 
 
-def sd_runner(job):
+def handler(job):
     '''
     Takes in raw data from the API call, prepares it for the model.
     Passes the data to the model to get the results.
     Prepares the resulting output to be returned to the API call.
     '''
     job_input = job['input']
+    job_output = {}
 
     # -------------------------------- Validation -------------------------------- #
     validated_input = validate(job_input, INPUT_SCHEMA)
@@ -95,3 +96,29 @@ def sd_runner(job):
         scheduler=valid_input['scheduler'],
         seed=valid_input['seed']
     )
+
+    for index, img_path in enumerate(image_paths):
+        image_url = rp_upload.upload_image(job['id'], img_path)
+
+        job_output['inference'].append({
+            "image": image_url,
+            "prompt": job_input["prompt"],
+            "negative_prompt": job_input["negative_prompt"],
+            "width": job_input['width'],
+            "height": job_input['height'],
+            "num_inference_steps": job_input['num_inference_steps'],
+            "guidance_scale": job_input['guidance_scale'],
+            "scheduler": job_input['scheduler'],
+            "seed": job_input['seed'] + index
+        })
+
+    # Remove downloaded input objects
+    # rp_cleanup.clean(['input_objects'])
+
+    return job_output
+
+
+# ---------------------------------------------------------------------------- #
+#                               Start the Worker                               #
+# ---------------------------------------------------------------------------- #
+runpod.serverless.start({"handler": handler})
