@@ -53,7 +53,7 @@ INPUT_SCHEMA = {
         'type': float,
         'required': False,
         'default': 7.5,
-        'constraints': lambda guidance_scale: guidance_scale in range(1, 20)
+        'constraints': lambda guidance_scale: 0 <= guidance_scale <= 20
     },
     'scheduler': {
         'type': str,
