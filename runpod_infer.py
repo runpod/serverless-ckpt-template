@@ -76,7 +76,7 @@ def handler(job):
     Prepares the resulting output to be returned to the API call.
     '''
     job_input = job['input']
-    job_output = {}
+    job_output = []
 
     # -------------------------------- Validation -------------------------------- #
     validated_input = validate(job_input, INPUT_SCHEMA)
