@@ -17,11 +17,11 @@ MODEL_RUNNER.setup()
 
 INPUT_SCHEMA = {
     'prompt': {
-        'type': 'string',
+        'type': str,
         'required': True
     },
     'negative_prompt': {
-        'type': 'string',
+        'type': str,
         'required': False,
         'default': None
     },
@@ -56,7 +56,7 @@ INPUT_SCHEMA = {
         'constraints': lambda guidance_scale: guidance_scale in range(1, 20)
     },
     'scheduler': {
-        'type': 'string',
+        'type': str,
         'required': False,
         'default': 'DPMSolverMultistep',
         'constraints': lambda scheduler: scheduler in ['DDIM', 'K_EULER', 'DPMSolverMultistep', 'K_EULER_ANCESTRAL', 'PNDM', 'KLMS']
