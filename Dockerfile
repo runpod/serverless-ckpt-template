@@ -32,6 +32,6 @@ RUN pip3 install https://github.com/runpod/runpod-python/archive/main.zip
 
 COPY . /opt/ckpt
 
-RUN python3 download_model.py
+RUN python3 model_fetcher.py
 
 CMD [ "python3", "-u", "/opt/ckpt/runpod_infer.py"]
