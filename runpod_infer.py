@@ -100,7 +100,7 @@ def handler(job):
     for index, img_path in enumerate(image_paths):
         image_url = rp_upload.upload_image(job['id'], img_path)
 
-        job_output['inference'].append({
+        job_output.append({
             "image": image_url,
             "prompt": job_input["prompt"],
             "negative_prompt": job_input["negative_prompt"],
