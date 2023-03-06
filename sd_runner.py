@@ -24,7 +24,12 @@ MODEL_CACHE = "diffusers-cache"
 SAFETY_MODEL_ID = "CompVis/stable-diffusion-safety-checker"
 
 
-class Predictor():
+class Predictor:
+    ''' A predictor class that loads the model into memory and runs predictions '''
+
+    def __init__(self, model_id):
+        self.model_id = model_id
+
     def setup(self):
         start_time = time.time()
         """Load the model into memory to make running multiple predictions efficient"""
@@ -35,7 +40,7 @@ class Predictor():
             local_files_only=True,
         )
         self.pipe = StableDiffusionPipeline.from_pretrained(
-            MODEL_ID,
+            self.model_id,
             safety_checker=safety_checker,
             cache_dir=MODEL_CACHE,
             local_files_only=True,

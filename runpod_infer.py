@@ -5,6 +5,8 @@ Entry point for job requests from RunPod serverless platform.
 '''
 
 import os
+import re
+import argparse
 
 import sd_runner
 
@@ -12,8 +14,6 @@ import runpod
 from runpod.serverless.utils import rp_download, rp_cleanup, rp_upload
 from runpod.serverless.utils.rp_validator import validate
 
-MODEL_RUNNER = sd_runner.Predictor()
-MODEL_RUNNER.setup()
 
 INPUT_SCHEMA = {
     'prompt': {
@@ -119,6 +119,21 @@ def handler(job):
 
 
 # ---------------------------------------------------------------------------- #
-#                               Start the Worker                               #
+#                                     Main                                     #
 # ---------------------------------------------------------------------------- #
-runpod.serverless.start({"handler": handler})
+parser = argparse.ArgumentParser(description=__doc__)
+parser.add_argument("--model_url", type=str,
+                    default=None, help="Model URL")
+
+
+if __name__ == "__main__":
+    args = parser.parse_args()
+
+    if re.match(r"huggingface.co", args.model_url):
+        url_parts = args.model_url.split("/")
+        model_id = f"{url_parts[-2]}/{url_parts[-1]}"
+
+    model_runner = sd_runner.Predictor(model_id)
+    model_runner.setup()
+
+    runpod.serverless.start({"handler": handler})

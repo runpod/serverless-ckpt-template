@@ -1,4 +1,4 @@
-ARG model_url=https://huggingface.co/stabilityai/stable-diffusion-2-1
+ARG MODEL_URL=https://huggingface.co/stabilityai/stable-diffusion-2-1
 
 ARG BASE_IMAGE=nvidia/cuda:11.6.2-cudnn8-devel-ubuntu20.04
 FROM ${BASE_IMAGE} as dev-base
@@ -41,6 +41,6 @@ RUN pip3 install https://github.com/runpod/runpod-python/archive/main.zip
 
 COPY . /opt/ckpt
 
-RUN python3 model_fetcher.py --model_url="${model_url}"
+RUN python3 model_fetcher.py --model_url="$MODEL_URL"
 
-CMD [ "python3", "-u", "/opt/ckpt/runpod_infer.py"]
+CMD [ "python3", "-u", "/opt/ckpt/runpod_infer.py", "--model_url=$MODEL_URL"]

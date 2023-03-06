@@ -53,11 +53,11 @@ def download_model(model_url: str):
 # ---------------------------------------------------------------------------- #
 #                                Parse Arguments                               #
 # ---------------------------------------------------------------------------- #
-argparser = argparse.ArgumentParser(description=__doc__)
-argparser.add_argument("--model_url", type=str,
-                       default="https://huggingface.co/stabilityai/stable-diffusion-2-1", help="URL of the model to download.")
+parser = argparse.ArgumentParser(description=__doc__)
+parser.add_argument("--model_url", type=str,
+                    default="https://huggingface.co/stabilityai/stable-diffusion-2-1", help="URL of the model to download.")
 
-args = argparser.parse_args()
 
 if __name__ == "__main__":
+    args = parser.parse_args()
     download_model(args.model_url)
