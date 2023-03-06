@@ -44,4 +44,4 @@ COPY . /opt/ckpt
 
 RUN python3 model_fetcher.py --model_url=${MODEL_URL}
 
-CMD [ "python3", "-u", "/opt/ckpt/runpod_infer.py", "--model_url='MODEL_URL'"]
+# CMD [ "python3", "-u", "/opt/ckpt/runpod_infer.py", "--model_url='MODEL_URL'"]

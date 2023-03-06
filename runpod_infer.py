@@ -84,7 +84,7 @@ def handler(job):
 
     valid_input = validated_input['validated_input']
 
-    image_paths = MODEL_RUNNER.predict(
+    image_paths = model_runner.predict(
         prompt=valid_input['prompt'],
         negative_prompt=valid_input['negative_prompt'],
         width=valid_input['width'],
