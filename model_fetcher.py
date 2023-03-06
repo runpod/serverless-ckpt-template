@@ -5,7 +5,6 @@ Downloads the model from the URL passed in.
 '''
 
 import os
-import re
 import shutil
 import requests
 import argparse
@@ -29,7 +28,7 @@ def download_model(model_url: str):
     os.makedirs(MODEL_CACHE_DIR, exist_ok=True)
 
     # Check if the URL is from huggingface.co, if so, grab the model repo id.
-    if re.match(r"huggingface.co", model_url):
+    if "huggingface.co" in model_url:
         url_parts = model_url.split("/")
         model_id = f"{url_parts[-2]}/{url_parts[-1]}"
     else:

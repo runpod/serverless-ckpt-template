@@ -5,7 +5,6 @@ Entry point for job requests from RunPod serverless platform.
 '''
 
 import os
-import re
 import argparse
 
 import sd_runner
@@ -129,7 +128,7 @@ parser.add_argument("--model_url", type=str,
 if __name__ == "__main__":
     args = parser.parse_args()
 
-    if re.match(r"huggingface.co", args.model_url):
+    if "huggingface.co" in model_url:
         url_parts = args.model_url.split("/")
         model_id = f"{url_parts[-2]}/{url_parts[-1]}"
 
