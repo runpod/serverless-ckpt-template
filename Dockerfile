@@ -1,7 +1,7 @@
-ARG MODEL_URL
-
 ARG BASE_IMAGE=nvidia/cuda:11.6.2-cudnn8-devel-ubuntu20.04
 FROM ${BASE_IMAGE} as dev-base
+
+ARG MODEL_URL
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 ENV DEBIAN_FRONTEND noninteractive\
