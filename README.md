@@ -9,5 +9,5 @@ The setup scripts will help to download the model as well as setting up the Dock
 ```BASH
 git clone https://github.com/runpod/serverless-ckpt-template.git
 
-docker build -t serverless-ckpt-template .
+docker build --build-args model_url={hf.co/model/id} -t serverless-ckpt-template .
 ```
