@@ -127,6 +127,7 @@ parser.add_argument("--model_url", type=str,
 
 if __name__ == "__main__":
     args = parser.parse_args()
+    print(args)
 
     if "huggingface.co" in args.model_url:
         url_parts = args.model_url.split("/")
