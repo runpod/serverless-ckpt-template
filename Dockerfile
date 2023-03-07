@@ -43,6 +43,6 @@ RUN pip3 install https://github.com/runpod/runpod-python/archive/main.zip
 COPY . /opt/ckpt
 
 RUN python3 model_fetcher.py --model_url=${MODEL_URL}
-RUN echo "Model URL: ${MODEL_URL}"
+RUN echo "Model URL: $MODELURL"
 
 CMD [ "python3", "-u", "/opt/ckpt/runpod_infer.py", "--model_url='$MODELURL'"]
