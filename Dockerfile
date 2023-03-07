@@ -2,7 +2,7 @@ ARG BASE_IMAGE=nvidia/cuda:11.6.2-cudnn8-devel-ubuntu20.04
 FROM ${BASE_IMAGE} as dev-base
 
 ARG MODEL_URL
-ENV MODELURL=$MODEL_URL
+ENV MODEL_URL=${MODEL_URL}
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 ENV DEBIAN_FRONTEND noninteractive\
@@ -43,6 +43,6 @@ RUN pip3 install https://github.com/runpod/runpod-python/archive/main.zip
 COPY . /opt/ckpt
 
 RUN python3 model_fetcher.py --model_url=${MODEL_URL}
-RUN echo "Model URL: $MODELURL"
+RUN echo "Model URL: $MODEL_URL"
 
-CMD [ "python3", "-u", "/opt/ckpt/runpod_infer.py", "--model_url='$MODELURL'"]
+CMD [ "python3", "-u", "/opt/ckpt/runpod_infer.py", "--model_url=\"$MODEL_URL\""]
