@@ -28,3 +28,7 @@ Once you have pushed your docker image, navigate over to the [Serverless Templat
 ![API Setup](./docs/images/api-setup.png)
 
 ![Endpoint](./docs/images/endpoint.png)
+
+## Usage
+
+To use your endpoint see our [Endpoint Docs](https://docs.runpod.io/ai-endpoints/runpod-apis)
