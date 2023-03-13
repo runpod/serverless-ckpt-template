@@ -17,7 +17,7 @@ You will need the following:
 git clone https://github.com/runpod/serverless-ckpt-template.git
 cd serverless-ckpt-template
 
-docker build --build-arg MODEL_URL={hf.co/model/id} -t repo/image_name:tag .
+docker build --build-arg MODEL_URL={huggingface.co/model/id} -t repo/image_name:tag .
 docker push repo/image_name:tag
 ```
 
