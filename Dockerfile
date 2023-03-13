@@ -29,6 +29,7 @@ RUN apt-get install python3-pip -y
 
 WORKDIR /opt/ckpt
 
+RUN pip3 install huggingface-hub==0.12.1
 RUN pip3 install diffusers==0.12.1
 RUN pip3 install torch==1.13.1 --extra-index-url=https://download.pytorch.org/whl/cu116
 RUN pip3 install ftfy==6.1.1
