@@ -42,7 +42,8 @@ class Predictor:
         )
         self.pipe = StableDiffusionPipeline.from_pretrained(
             self.model_id,
-            safety_checker=safety_checker,
+            # safety_checker=safety_checker,
+            safety_checker=None,
             cache_dir=MODEL_CACHE,
             local_files_only=True,
         ).to(self.device)
