@@ -1,0 +1,10 @@
+huggingface-hub==0.13.3
+diffusers==0.14.0
+torch==2.0.0+cu116 -f https://download.pytorch.org/whl/cu116
+ftfy==6.1.1
+scipy==1.10.1
+transformers==4.27.4
+accelerate==0.18.0
+xformers==0.0.18
+triton==2.0.0.post1
+runpod==0.9.1

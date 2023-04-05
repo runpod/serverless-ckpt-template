@@ -29,6 +29,7 @@ class Predictor:
 
     def __init__(self, model_id):
         self.model_id = model_id
+        self.device = "cuda" if torch.cuda.is_available() else "cpu"
 
     def setup(self):
         start_time = time.time()
@@ -44,7 +45,7 @@ class Predictor:
             safety_checker=safety_checker,
             cache_dir=MODEL_CACHE,
             local_files_only=True,
-        ).to("cuda")
+        ).to(self.device)
 
         self.pipe.enable_xformers_memory_efficient_attention()
         # self.pipe.vae.enable_xformers_memory_efficient_attention(attention_op=None)
@@ -66,7 +67,7 @@ class Predictor:
 
         self.pipe.scheduler = make_scheduler(scheduler, self.pipe.scheduler.config)
 
-        generator = torch.Generator("cuda").manual_seed(seed)
+        generator = torch.Generator(self.device).manual_seed(seed)
         output = self.pipe(
             prompt=[prompt] * num_outputs if prompt is not None else None,
             negative_prompt=[negative_prompt] * num_outputs
